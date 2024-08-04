@@ -19,9 +19,11 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.chaeni__beam.ai_healing.Adapter.FoodListAdapter
 import com.chaeni__beam.ai_healing.Adapter.foodData
 import com.chaeni__beam.ai_healing.CalendarActivity
+import com.chaeni__beam.ai_healing.EntranceActivity
 import com.chaeni__beam.ai_healing.FirstFragment
 import com.chaeni__beam.ai_healing.FoodActivity
 import com.chaeni__beam.ai_healing.JoinActivity
+import com.chaeni__beam.ai_healing.MainActivity
 import com.chaeni__beam.ai_healing.R
 import com.chaeni__beam.ai_healing.SongActivity
 import com.chaeni__beam.ai_healing.databinding.FragmentHomeBinding
@@ -87,6 +89,16 @@ class HomeFragment : Fragment() {
 
         binding.button2.setOnClickListener{
             val intent = Intent(requireContext(), FoodActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.button3.setOnClickListener{
+            //짜야함
+        }
+
+        binding.imageEmotion.setOnClickListener{
+            val intent = Intent(requireContext(), EntranceActivity::class.java)
+            intent.putExtra("emotion", emotion)
             startActivity(intent)
         }
 
