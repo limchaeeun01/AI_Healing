@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         )
         navView.setupWithNavController(navController)
 
-        currentEmotion = intent?.getStringExtra("emotion") ?: "sadness" //테스트
+        currentEmotion = intent?.getStringExtra("emotion") ?: "sadness" //테스트 테스트용
 
         if (savedInstanceState == null) {
             val bundle = Bundle().apply {
