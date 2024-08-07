@@ -11,7 +11,6 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.core.view.WindowCompat
 import com.chaeni__beam.ai_healing.databinding.ActivityLoginBinding
-import com.chaeni__beam.ai_healing.databinding.ActivityWelcomeBinding
 
 class LoginActivity : AppCompatActivity() {
 

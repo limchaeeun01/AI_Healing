@@ -4,31 +4,18 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.text.SpannableStringBuilder
-import android.text.Spanned
-import android.text.style.BackgroundColorSpan
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.FragmentActivity
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.chaeni__beam.ai_healing.Adapter.FoodListAdapter
 import com.chaeni__beam.ai_healing.Adapter.foodData
-import com.chaeni__beam.ai_healing.CalendarActivity
 import com.chaeni__beam.ai_healing.EntranceActivity
-import com.chaeni__beam.ai_healing.FirstFragment
 import com.chaeni__beam.ai_healing.FoodActivity
-import com.chaeni__beam.ai_healing.JoinActivity
-import com.chaeni__beam.ai_healing.MainActivity
 import com.chaeni__beam.ai_healing.R
 import com.chaeni__beam.ai_healing.SongActivity
 import com.chaeni__beam.ai_healing.databinding.FragmentHomeBinding
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import kotlin.random.Random
 
 

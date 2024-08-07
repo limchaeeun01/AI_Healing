@@ -4,38 +4,21 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.chaeni__beam.ai_healing.R
 
-class ViewPagerAdapter : PagerAdapter(){
-    private var mContext: Context?=null
+class ViewPagerAdapter (fragment : Fragment) : FragmentStateAdapter(fragment) {
 
-    fun ViewPagerAdapter(context: Context){
-        mContext=context;
-    }
+    private val fragmentlist : ArrayList<Fragment> = ArrayList()
 
-    //position에 해당하는 페이지 생성
-    override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val view= LayoutInflater.from(container.context).inflate(R.layout.food_ranking_page,container,false)
-        //val textView: TextView = view.findViewById(R.id.page)
-        //textView.text = "TEXT $position"
-        container.addView(view)
-        return view
-    }
+    override fun getItemCount(): Int = fragmentlist.size
 
-    //position에 위치한 페이지 제거
-    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-        container.removeView(`object` as View?)
-    }
+    override fun createFragment(position: Int): Fragment = fragmentlist[position]
 
-    //사용가능한 뷰 개수 리턴
-    override fun getCount(): Int {
-        return 5
-    }
-
-    //페이지뷰가 특정 키 객체(key object)와 연관 되는지 여부
-    override fun isViewFromObject(view: View, `object`: Any): Boolean {
-        return (view==`object`)
+    fun addFragment(fragment: Fragment){
+        fragmentlist.add(fragment)
+        notifyItemInserted(fragmentlist.size - 1) // viewpager 에게 추가된 fragment 를 알려줌
     }
 }

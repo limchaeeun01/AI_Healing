@@ -63,11 +63,11 @@
             android:orientation="vertical">
 
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/food_ranking_page"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/food_board"
                 android:layout_gravity="center"
-                android:layout_width="330dp"
-                android:layout_height="420dp"/>
+                android:layout_width="400dp"
+                android:layout_height="400dp"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_marginTop="30dp"
