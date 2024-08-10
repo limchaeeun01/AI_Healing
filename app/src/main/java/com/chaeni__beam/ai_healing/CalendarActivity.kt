@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.CalendarView
 import androidx.annotation.RequiresApi
+import androidx.viewpager2.widget.ViewPager2
+import com.chaeni__beam.ai_healing.Adapter.FirstFragmentStateAdapter
 import com.chaeni__beam.ai_healing.databinding.ActivityCalendarBinding
 import com.chaeni__beam.ai_healing.databinding.ActivityContentSettingBinding
 import java.time.LocalDate
@@ -25,26 +27,16 @@ class CalendarActivity : AppCompatActivity() {
             finish()
         }
 
-        val current = LocalDateTime.now()
-        val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
-        binding.dateTextView.setText(current.format(formatter))
-
-        binding.calendarView.setOnDateChangeListener{view, year, month, dayOfMonth ->
-            binding.dateTextView.setText(String.format("%d/%02d/%02d", year, month + 1, dayOfMonth))
-
-            if(dayOfMonth == 1) {
-                binding.text.setText("행복 : 50%\n평온 : 50%")
-            }else if(dayOfMonth == 5){
-                binding.text.setText("슬픔 : 50%\n평온 : 25%\n무기력 : 25%")
-            }else if(dayOfMonth == 7){
-                binding.text.setText("무기력 : 100%")
-            }else if(dayOfMonth == 10){
-                binding.text.setText("슬픔 : 100%")
-            }else{
-                binding.text.setText("데이터 없음")
-            }
-
-        }
+        initView()
 
     }
+
+    fun initView() {
+        val firstFragmentStateAdapter
+                = FirstFragmentStateAdapter(this)
+        binding.calendarViewPager.adapter = firstFragmentStateAdapter
+        binding.calendarViewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
+        binding.calendarViewPager.setCurrentItem(firstFragmentStateAdapter.firstFragmentPosition, false)
+    }
+
 }

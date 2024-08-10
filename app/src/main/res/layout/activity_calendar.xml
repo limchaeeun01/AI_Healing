@@ -42,33 +42,11 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <CalendarView
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/calendarViewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/calendarView"
-        android:dateTextAppearance="@style/TextAppearance.AppCompat"
-        android:weekDayTextAppearance="@style/TextAppearance.AppCompat"
-        android:selectedWeekBackgroundColor="@color/everydayColor"
-        android:layout_marginTop="10dp" />
+        android:layout_height="match_parent"/>
 
-    <TextView
-        android:id="@+id/dateTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity= "center"
-        android:textSize="20dp"
-        android:fontFamily="@font/pretendard_regular"
-        android:layout_marginTop="12dp"
-        android:text="2024/05/23" />
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_marginTop="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="@font/pretendard_bold"
-        android:textSize="20dp"
-        android:text="슬픔 : 100%"/>
 
 </LinearLayout>

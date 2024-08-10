@@ -287,7 +287,6 @@
                 tools:listitem="@layout/food_list_item" />
 
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp">

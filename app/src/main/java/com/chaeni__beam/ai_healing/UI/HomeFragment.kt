@@ -2,6 +2,7 @@ package com.chaeni__beam.ai_healing.UI
 
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import com.chaeni__beam.ai_healing.Adapter.FoodListAdapter
+import com.chaeni__beam.ai_healing.Adapter.ProductData
+import com.chaeni__beam.ai_healing.Adapter.ProductListAdapter
 import com.chaeni__beam.ai_healing.Adapter.foodData
 import com.chaeni__beam.ai_healing.EntranceActivity
 import com.chaeni__beam.ai_healing.FoodActivity
@@ -24,7 +27,11 @@ class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
 
     lateinit var foodAdapter: FoodListAdapter
+    lateinit var productAdapter : ProductListAdapter
+
     val foodData = mutableListOf<foodData>()
+    val productData = mutableListOf<ProductData>()
+
 
     var emotion: String = ""
 
@@ -64,7 +71,9 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        initRecycler()
+        initFoodRecycler()
+
+        initProductRecycler()
 
         setEmotion()
 
@@ -133,10 +142,9 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun initRecycler() {
+    fun initFoodRecycler() {
         foodAdapter = FoodListAdapter(requireContext())
         binding.foodRv.adapter = foodAdapter
-
 
         foodData.apply {
             add(foodData(food_img = R.drawable.yeoneo, food_name = "연어"))
@@ -148,6 +156,26 @@ class HomeFragment : Fragment() {
             foodAdapter.datas = foodData
             foodAdapter.notifyDataSetChanged()
 
+        }
+    }
+
+    fun initProductRecycler() {
+        productAdapter = ProductListAdapter(requireContext())
+        binding.productRv.adapter = productAdapter
+
+        productData.apply {
+            add(ProductData(product_img = R.drawable.product1, product_name = "LED 무드등", product_url = "https://url.kr/49rmxq"))
+
+            productAdapter.datas = productData
+            productAdapter.notifyDataSetChanged()
+        }
+
+        productAdapter.listener = object : ProductListAdapter.OnItemClickListener {
+            override fun onItemClick(item: ProductData) {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(item.product_url)
+                startActivity(intent)
+            }
         }
     }
 
