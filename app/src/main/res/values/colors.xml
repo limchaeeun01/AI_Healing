@@ -3,6 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="yellow">#FFF59D</color>
-    <color name="everydayColor">#0059BF</color>
+    <color name="everydayColor">#9A8475</color>
     <color name="test">#8345496E</color>
+    <color name="gray">#B4B4B4</color>
+    <color name="background_1">#F8F8F5</color>
 </resources>

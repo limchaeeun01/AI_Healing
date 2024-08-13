@@ -27,13 +27,10 @@ class FurangCalendar(date: Date) {
     }
 
     private fun makeMonthDate() {
-
         dateList.clear()
 
         calendar.set(Calendar.DATE, 1)
-
         currentMaxDate = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
-
         prevTail = calendar.get(Calendar.DAY_OF_WEEK) - 1
 
         makePrevTail(calendar.clone() as Calendar)
@@ -57,8 +54,11 @@ class FurangCalendar(date: Date) {
 
     private fun makeNextHead() {
         var date = 1
-
         for (i in 1..nextHead) dateList.add(date++)
     }
 
+    // 현재 월을 반환하는 메서드 추가
+    fun getCurrentMonth(): Int {
+        return calendar.get(Calendar.MONTH) + 1 // 월은 0부터 시작하므로 +1
+    }
 }

@@ -1,5 +1,6 @@
 package com.chaeni__beam.ai_healing
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -25,6 +26,11 @@ class CalendarActivity : AppCompatActivity() {
 
         binding.backBtn.setOnClickListener{
             finish()
+        }
+
+        binding.diaryBtn.setOnClickListener{
+            val intent = Intent(this, DiaryActivity::class.java)
+            startActivity(intent)
         }
 
         initView()

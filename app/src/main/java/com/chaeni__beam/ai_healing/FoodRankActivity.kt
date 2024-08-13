@@ -1,4 +1,4 @@
-package com.chaeni__beam.ai_healing.UI
+package com.chaeni__beam.ai_healing
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

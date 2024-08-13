@@ -1,6 +1,7 @@
 package com.chaeni__beam.ai_healing.fragment
 
 import android.content.Context
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chaeni__beam.ai_healing.Adapter.CalendarAdapter
@@ -88,10 +90,27 @@ class CalendarFragment : Fragment() {
         val gridLayoutManager = GridLayoutManager(mContext, 7) // 7은 요일 개수
         binding.calendarView.layoutManager = gridLayoutManager
 
+        //클릭 이벤트
+        calendarAdapter = CalendarAdapter(mContext, binding.calendarLayout, currentDate).apply {
+            itemClick = object : CalendarAdapter.ItemClick {
+                override fun onClick(view: View, position: Int, date: Int) {
+                    Toast.makeText(mContext, "Clicked date: $date", Toast.LENGTH_SHORT).show()
+
+                    // 기존 스타일을 초기화 (필요한 경우)
+                    calendarAdapter.notifyDataSetChanged()
+
+                    // 클릭된 날짜의 텍스트를 굵게 설정
+                    view.findViewById<TextView>(R.id.item_calendar_date_text)?.apply {
+                        setTypeface(typeface, Typeface.BOLD)
+                    }
+                }
+            }
+        }
+
         // CalendarAdapter를 RecyclerView에 연결합니다.
-        calendarAdapter = CalendarAdapter(mContext, binding.calendarLayout, currentDate)
         binding.calendarView.adapter = calendarAdapter
     }
+
 
 
     override fun onDestroy() {

@@ -7,10 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
-import com.chaeni__beam.ai_healing.JoinActivity
 import com.chaeni__beam.ai_healing.R
-import com.chaeni__beam.ai_healing.UI.FoodRankActivity
+import com.chaeni__beam.ai_healing.FoodRankActivity
 
 
 class FoodBoardFragment(val image : Int) : Fragment() {
