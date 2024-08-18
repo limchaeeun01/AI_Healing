@@ -7,10 +7,16 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
+import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.view.WindowCompat
+import com.android.volley.Response
+import com.android.volley.toolbox.Volley
 import com.chaeni__beam.ai_healing.databinding.ActivityLoginBinding
+import org.json.JSONException
+import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
 
@@ -24,13 +30,12 @@ class LoginActivity : AppCompatActivity() {
         binding.joinBtn.setOnClickListener{
             val intent = Intent(this, JoinActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
-        binding.loginBtn.setOnClickListener{
+        binding.loginBtn.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-        }
+        })
 
 
     }
@@ -50,5 +55,39 @@ class LoginActivity : AppCompatActivity() {
             }
         }
         return super.dispatchTouchEvent(ev)
+    }
+
+    fun test(){
+        binding.loginBtn.setOnClickListener {
+            val id = binding.idInput.text.toString()
+            val pw = binding.passwordInput.text.toString()
+
+            val responseListener = Response.Listener<String> { response ->
+                try {
+                    val jsonObject = JSONObject(response)
+                    val success = jsonObject.getBoolean("success")
+
+                    if (success) {
+                        val msg = jsonObject.getString("ID")
+                        Toast.makeText(applicationContext, "로그인 성공. ID :" + msg, Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(applicationContext, "실패", Toast.LENGTH_SHORT).show()
+                        return@Listener
+                    }
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                    Toast.makeText(applicationContext, "예외 1", Toast.LENGTH_SHORT).show()
+                    return@Listener
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+
+            val loginRequestActivity = LoginRequestActivity(id, pw, responseListener)
+            val queue = Volley.newRequestQueue(applicationContext)
+            queue.add(loginRequestActivity)
+        }
+
+
     }
 }

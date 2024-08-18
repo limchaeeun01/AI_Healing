@@ -53,9 +53,6 @@ class HomeFragment : Fragment() {
             "그 웃음이 계속되길 바랄게요.\n", "행복한 순간을 소중히 여기세요.\n" +
             "그 기억이 앞으로도 많은 기쁨을 줄 거예요.\n")
 
-    val apathyMentList = listOf("한 걸음씩, 조금씩 앞으로 나아가는 게 중요해요.\n" +
-            "당신은 충분히 강합니다.\n", "현재 상황에 포기하지 않아도 돼요.\n" +
-            "작은 변화부터 시작해보세요.\n")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -131,14 +128,6 @@ class HomeFragment : Fragment() {
                 binding.imageEmotion.setImageResource(R.drawable.happiness_bg)
                 binding.mentEmotion.setText(happinessMentList[Random.nextInt(2)] + "${name}님이 이 행복한 순간을 더 오래 지속할 수 있도록\n맞춤 컨텐츠를 추천해드릴게요.")}
 
-            "apathy" ->{
-                binding.bgEmotion.setBackgroundColor(Color.parseColor("#CC6FE8"))
-                binding.titleEmotion.setText(" 무기력, 피곤 ")
-                binding.titleEmotion.setBackgroundColor(Color.parseColor("#80613680"))
-                binding.imageEmotion.setImageResource(R.drawable.apathy_bg)
-                binding.mentEmotion.setText(apathyMentList[Random.nextInt(2)] + "${name}님이 긍정적인 변화를 경험할 수 있도록\n맞춤 컨텐츠를 추천해드릴게요.")}
-
-
         }
     }
 
@@ -147,11 +136,11 @@ class HomeFragment : Fragment() {
         binding.foodRv.adapter = foodAdapter
 
         foodData.apply {
-            add(foodData(food_img = R.drawable.yeoneo, food_name = "연어"))
-            add(foodData(food_img = R.drawable.hodugwaja, food_name = "호두과자"))
-            add(foodData(food_img = R.drawable.origogi, food_name = "오리고기"))
-            add(foodData(food_img = R.drawable.chokocake, food_name = "초코케이크"))
-            add(foodData(food_img = R.drawable.nokcha, food_name = "녹차"))
+            add(foodData(food_img = R.drawable.yeoneo, food_name = "연어", food_info = " ", food_price = 0))
+            add(foodData(food_img = R.drawable.hodugwaja, food_name = "호두과자", food_info = " ", food_price = 0))
+            add(foodData(food_img = R.drawable.origogi, food_name = "오리고기", food_info = " ", food_price = 0))
+            add(foodData(food_img = R.drawable.chokocake, food_name = "초코케이크", food_info = " ", food_price = 0))
+            add(foodData(food_img = R.drawable.nokcha, food_name = "녹차", food_info = " ", food_price = 0))
 
             foodAdapter.datas = foodData
             foodAdapter.notifyDataSetChanged()

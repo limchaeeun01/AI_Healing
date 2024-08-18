@@ -20,7 +20,6 @@ class EntranceActivity : AppCompatActivity() {
 
     val emotions = listOf(
         Emotion("sadness", R.drawable.sadness, "슬퍼요"),
-        Emotion("apathy", R.drawable.apathy, "무기력해요"),
         Emotion("happiness", R.drawable.happiness, "행복해요"),
         Emotion("anger", R.drawable.anger, "화나요"),
         Emotion("gentleness", R.drawable.gentleness, "평온해요")
@@ -49,7 +48,6 @@ class EntranceActivity : AppCompatActivity() {
         binding.emotion1.setOnClickListener { clickListener(filteredEmotions[0]) }
         binding.emotion2.setOnClickListener { clickListener(filteredEmotions[1]) }
         binding.emotion3.setOnClickListener { clickListener(filteredEmotions[2]) }
-        binding.emotion4.setOnClickListener { clickListener(filteredEmotions[3]) }
 
         binding.nextBtn.setOnClickListener {
             if (selectEmotion != "") {
@@ -75,20 +73,17 @@ class EntranceActivity : AppCompatActivity() {
             binding.emotion1Image,
             binding.emotion2Image,
             binding.emotion3Image,
-            binding.emotion4Image
         )
         val emotionTextList = listOf<TextView>(
             binding.emotion1Text,
             binding.emotion2Text,
             binding.emotion3Text,
-            binding.emotion4Text
         )
 
         val emotionLayouts = listOf(
             binding.emotion1,
             binding.emotion2,
             binding.emotion3,
-            binding.emotion4
         )
 
         val filteredEmotions = emotions.filter { it.id != currentEmotion }
@@ -118,9 +113,6 @@ class EntranceActivity : AppCompatActivity() {
         )
         binding.emotion3.setBackgroundResource(
             if (selectEmotion == filteredEmotions[2].id) R.drawable.button_select_emotion else R.drawable.button_emotion
-        )
-        binding.emotion4.setBackgroundResource(
-            if (selectEmotion == filteredEmotions[3].id) R.drawable.button_select_emotion else R.drawable.button_emotion
         )
     }
 }
