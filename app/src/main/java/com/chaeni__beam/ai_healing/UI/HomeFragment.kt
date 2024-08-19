@@ -5,26 +5,36 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.chaeni__beam.ai_healing.Adapter.FoodListAdapter
 import com.chaeni__beam.ai_healing.Adapter.ProductData
 import com.chaeni__beam.ai_healing.Adapter.ProductListAdapter
 import com.chaeni__beam.ai_healing.Adapter.foodData
+import com.chaeni__beam.ai_healing.content.ContentActivity
 import com.chaeni__beam.ai_healing.EntranceActivity
-import com.chaeni__beam.ai_healing.FoodActivity
+import com.chaeni__beam.ai_healing.food.FoodActivity
 import com.chaeni__beam.ai_healing.R
-import com.chaeni__beam.ai_healing.SongActivity
 import com.chaeni__beam.ai_healing.databinding.FragmentHomeBinding
+import com.chaeni__beam.ai_healing.fragment.ContentBoardFragment
 import kotlin.random.Random
 
 
 class HomeFragment : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
+
+    private lateinit var handler: Handler
+    private lateinit var runnable: Runnable
+
+    private val numPages = 4
 
     lateinit var foodAdapter: FoodListAdapter
     lateinit var productAdapter : ProductListAdapter
@@ -76,7 +86,7 @@ class HomeFragment : Fragment() {
 
         //임시
         binding.button1.setOnClickListener{
-            val intent = Intent(requireContext(), SongActivity::class.java)
+            val intent = Intent(requireContext(), ContentActivity::class.java)
             startActivity(intent)
         }
 
@@ -95,7 +105,44 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+        contentBoard()
+
         return binding.root
+    }
+
+    fun contentBoard(){
+        binding.contentBoard.adapter = ScreenSlidePagerAdapter(requireActivity())
+
+        handler = Handler(Looper.getMainLooper())
+        runnable = object : Runnable {
+            override fun run() {
+                val currentItem = binding.contentBoard.currentItem
+                val nextItem = (currentItem + 1) % numPages
+                binding.contentBoard.setCurrentItem(nextItem, true)
+                handler.postDelayed(this, 5000)
+            }
+        }
+
+        // Start the automatic sliding
+        handler.postDelayed(runnable, 5000)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        handler.removeCallbacks(runnable) // Remove callbacks to prevent memory leaks
+    }
+
+    private inner class ScreenSlidePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
+        override fun getItemCount(): Int = numPages
+
+        override fun createFragment(position: Int): Fragment {
+            return when(position) {
+                0 -> ContentBoardFragment(R.drawable.movie_rcm)
+                1 -> ContentBoardFragment(R.drawable.music_rcm)
+                2 -> ContentBoardFragment(R.drawable.book_rcm)
+                else -> ContentBoardFragment(R.drawable.game_rcm)
+            }
+        }
     }
 
     fun setEmotion(){

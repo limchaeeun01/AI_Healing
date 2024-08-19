@@ -1,4 +1,4 @@
-package com.chaeni__beam.ai_healing
+package com.chaeni__beam.ai_healing.food
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,9 +7,8 @@ import android.os.Looper
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.chaeni__beam.ai_healing.Adapter.ViewPagerAdapter
+import com.chaeni__beam.ai_healing.R
 import com.chaeni__beam.ai_healing.databinding.ActivityFoodBinding
-import com.chaeni__beam.ai_healing.databinding.ActivityLoginBinding
 import com.chaeni__beam.ai_healing.fragment.FoodBoardFragment
 
 class FoodActivity : AppCompatActivity() {

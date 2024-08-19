@@ -140,7 +140,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:fontFamily="@font/pretendard_bold"
-                    android:text="🎵 지금 들으면 좋을 노래예요"
+                    android:text="💌 오늘의 추천 콘텐츠"
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -171,16 +171,14 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-                android:id="@+id/youtube_video"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/content_board"
+                android:layout_gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="10dp"
-                app:autoPlay="false"
-                app:videoId="uc3dpkLTYzQ" />
+                android:layout_height="160dp"
+                android:layout_marginTop="10dp"/>
+
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_marginTop="30dp"

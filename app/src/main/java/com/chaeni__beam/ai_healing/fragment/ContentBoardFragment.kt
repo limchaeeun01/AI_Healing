@@ -11,7 +11,7 @@ import com.chaeni__beam.ai_healing.R
 import com.chaeni__beam.ai_healing.food.FoodRankActivity
 
 
-class FoodBoardFragment(val image : Int) : Fragment() {
+class ContentBoardFragment(val image : Int) : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,23 +25,22 @@ class FoodBoardFragment(val image : Int) : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.fragment_food_board, container, false)
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_content_board, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Find ImageView and set the image resource
-        val imageView: ImageView = view.findViewById(R.id.food_board_img)
+        val imageView: ImageView = view.findViewById(R.id.content_board_img)
         imageView.setImageResource(image)
 
         imageView.setOnClickListener {
             when(image){
-                R.drawable.food_menu_rcm ->{
-                    val intent = Intent(requireContext(), FoodRankActivity::class.java)
-                    startActivity(intent)
-                }
+//                R.drawable.food_menu_rcm ->{
+//                    val intent = Intent(requireContext(), FoodRankActivity::class.java)
+//                    startActivity(intent)
+//                }
 
             }
         }

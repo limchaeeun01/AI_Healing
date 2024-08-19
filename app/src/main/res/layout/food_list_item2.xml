@@ -31,10 +31,10 @@
 
     <TextView
         android:id="@+id/food_name"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pretendard_bold"
-        android:gravity="center"
+        android:gravity="left"
         android:text="음식 이름"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -43,10 +43,10 @@
 
     <TextView
         android:id="@+id/food_info"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pretendard_regular"
-        android:gravity="center"
+        android:gravity="left"
         android:layout_marginTop="10dp"
         android:text="음식 소개"
         android:textSize="15dp"
