@@ -8,17 +8,24 @@ import com.android.volley.toolbox.StringRequest
 class SignupRequestActivity(
     ID: String,
     Password: String,
+    Name : String,
+    Birth : Int,
+    Gender : String,
     listener: Response.Listener<String>
 ) : StringRequest(Method.POST, URL, listener, null) {
     private val map: MutableMap<String, String> = hashMapOf()
 
     companion object {
-        private const val URL = "http://54.180.145.22/signup_test.php"
+        private const val URL = "http://3.39.196.18/signup_test.php"
     }
 
     init {
         map["ID"] = ID
         map["Password"] = Password
+        map["Name"] = Name
+        map["Birthdate"] = Birth.toString()
+        map["Gender"] = Gender
+
     }
 
     override fun getParams(): MutableMap<String, String> {

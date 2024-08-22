@@ -48,6 +48,7 @@
                 android:textSize="14dp"
                 android:text="이름"/>
             <EditText
+                android:id="@+id/nameInput"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="6dp"
@@ -65,6 +66,7 @@
                 android:layout_height="wrap_content"
                 android:text="생년월일 8자리"/>
             <EditText
+                android:id="@+id/birthInput"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="6dp"
@@ -88,6 +90,7 @@
                 android:text="성별"/>
 
             <RadioGroup
+                android:id="@+id/radioGroupGender"
                 android:layout_marginTop="6dp"
                 android:layout_marginLeft="45dp"
                 android:layout_width="wrap_content"
@@ -95,12 +98,14 @@
                 android:orientation="horizontal">
 
                 <RadioButton
+                    android:id="@+id/radioButtonMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:text="남"/>
 
                 <RadioButton
+                    android:id="@+id/radioButtonFemale"
                     android:layout_marginLeft="30dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

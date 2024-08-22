@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI.DashboardFragment"
-    android:background="@color/white"
+    android:background="@color/background_1"
     android:orientation="vertical">
 
     <LinearLayout
@@ -28,7 +28,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/background_1">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -41,7 +42,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/background_border"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -51,36 +52,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="김수원님은 저번 주에.."
+                    android:text="지난 날들의 감정을 돌이켜 볼까요?"
                     android:fontFamily="@font/pretendard_regular"
-                    android:textSize="22sp" />
+                    android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/weekComment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:bufferType="spannable"
-                    android:text="신나는 일이 많으셨던 것 같아요."
-                    android:fontFamily="@font/pretendard_regular"
-                    android:textSize="22sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="40dp"
-                    android:text="김수원님의 한 달은 어떠했는지 돌이켜 볼 수 있어요."
-                    android:fontFamily="@font/pretendard_regular"
-                    android:textColor="#8C8C8C"
-                    android:textSize="15sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/weekBtn"
+                    android:id="@+id/calendarBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:background="@drawable/button_rounded_corner_rectangle"
-                    android:text="나의 표정 캘린더 확인하기"
+                    android:text="나의 감정 캘린더 확인하기"
                     android:fontFamily="@font/pretendard_regular"
                     android:textColor="@color/white"
                     android:textSize="15dp" />
@@ -90,7 +73,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/background_border"
                 android:gravity="center"
@@ -101,34 +84,47 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="김수원님의 평안한 하루를 위해"
+                    android:text="김수원 님의 감정 여정을 분석해 보았어요."
                     android:fontFamily="@font/pretendard_regular"
-                    android:textSize="22sp" />
+                    android:textSize="20sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/statisticsBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/button_rounded_corner_rectangle"
+                    android:text="나의 감정 통계 확인하기"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/background_border"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Everyday Friend가 최선을 다할게요."
+                    android:layout_marginTop="15dp"
+                    android:text="최근 서비스 이용 통계를 확인해 보세요."
                     android:fontFamily="@font/pretendard_regular"
-                    android:textSize="22sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="40dp"
-                    android:text="김수원님이 원하시는 힐링 타입을 알려주세요."
-                    android:fontFamily="@font/pretendard_regular"
-                    android:textColor="#8C8C8C"
-                    android:textSize="15sp" />
+                    android:textSize="20sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/contentsSettingBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:background="@drawable/button_rounded_corner_rectangle"
-                    android:text="나의 맞춤형 힐링 컨텐츠 설정하기"
+                    android:text="나의 서비스 이용 내역 확인하기"
                     android:fontFamily="@font/pretendard_regular"
                     android:textColor="@color/white"
                     android:textSize="15dp" />

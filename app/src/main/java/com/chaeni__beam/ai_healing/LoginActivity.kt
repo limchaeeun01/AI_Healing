@@ -6,6 +6,7 @@ import android.graphics.Rect
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
@@ -32,10 +33,11 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.loginBtn.setOnClickListener(View.OnClickListener {
+        binding.loginBtn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-        })
+        }
+
 
 
     }
@@ -57,37 +59,46 @@ class LoginActivity : AppCompatActivity() {
         return super.dispatchTouchEvent(ev)
     }
 
-    fun test(){
-        binding.loginBtn.setOnClickListener {
-            val id = binding.idInput.text.toString()
-            val pw = binding.passwordInput.text.toString()
+    fun test() {
+        val id = binding.idInput.text.toString()
+        val pw = binding.passwordInput.text.toString()
 
-            val responseListener = Response.Listener<String> { response ->
-                try {
-                    val jsonObject = JSONObject(response)
-                    val success = jsonObject.getBoolean("success")
+        val responseListener = Response.Listener<String> { response ->
+            try {
+                // 서버에서 받은 원본 응답을 로그로 출력합니다.
+                Log.d("tttt", response)
 
-                    if (success) {
-                        val msg = jsonObject.getString("ID")
-                        Toast.makeText(applicationContext, "로그인 성공. ID :" + msg, Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(applicationContext, "실패", Toast.LENGTH_SHORT).show()
-                        return@Listener
-                    }
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                    Toast.makeText(applicationContext, "예외 1", Toast.LENGTH_SHORT).show()
-                    return@Listener
-                } catch (e: Exception) {
-                    e.printStackTrace()
+                val jsonObject = JSONObject(response)
+                val success = jsonObject.getBoolean("success")
+
+                if (success) {
+                    val msg = jsonObject.getString("ID")
+                    Toast.makeText(applicationContext, "로그인 성공. ID: $msg", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()  // 이전 액티비티를 종료하여 뒤로 가기 방지
+                } else {
+                    Toast.makeText(applicationContext, "로그인 실패. ID 또는 비밀번호를 확인하세요.", Toast.LENGTH_SHORT).show()
                 }
+            } catch (e: JSONException) {
+                e.printStackTrace()
+                Toast.makeText(applicationContext, "응답 처리 중 오류 발생.", Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toast.makeText(applicationContext, "알 수 없는 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
             }
-
-            val loginRequestActivity = LoginRequestActivity(id, pw, responseListener)
-            val queue = Volley.newRequestQueue(applicationContext)
-            queue.add(loginRequestActivity)
         }
 
 
+        val errorListener = Response.ErrorListener { error ->
+            error.printStackTrace()
+            Toast.makeText(applicationContext, "네트워크 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
+        }
+
+        // 에러 리스너를 추가하여 LoginRequestActivity를 생성합니다.
+        val loginRequestActivity = LoginRequestActivity(id, pw, responseListener, errorListener)
+        val queue = Volley.newRequestQueue(applicationContext)
+        queue.add(loginRequestActivity)
     }
+
 }

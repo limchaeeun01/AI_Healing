@@ -2,8 +2,10 @@ package com.chaeni__beam.ai_healing
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -32,9 +34,12 @@ class EntranceActivity : AppCompatActivity() {
 
         currentEmotion = intent.getStringExtra("emotion").toString()
 
-        setCurrentEmotion()
-        setSelectEmotion()
-
+        if(currentEmotion == ""){
+            setInitialEmotion()
+        }else{
+            setCurrentEmotion()
+            setSelectEmotion()
+        }
 
         // 버튼 클릭 리스너 설정
         val clickListener = { emotion: Emotion ->
@@ -62,7 +67,38 @@ class EntranceActivity : AppCompatActivity() {
 
     }
 
+    fun setInitialEmotion() {
+        binding.currentTextView.visibility = View.GONE
+        binding.currentEmotionState.visibility = View.GONE
+
+        binding.InitialtextView.visibility = View.VISIBLE
+        binding.initialEmotionState.visibility = View.VISIBLE
+
+        // 초기 감정 버튼들에 대한 정보 리스트
+        val initialEmotionButtons = listOf(
+            Pair(binding.initSadness, "sadness"),
+            Pair(binding.initAnger, "anger"),
+            Pair(binding.initHappiness, "happiness"),
+            Pair(binding.initGentleness, "gentleness")
+        )
+
+        // 각 버튼에 리스너 설정
+        initialEmotionButtons.forEach { (button, emotionId) ->
+            button.setOnClickListener {
+                selectEmotion = emotionId
+                btnActivation()
+                updateButtonBackgrounds()
+            }
+        }
+    }
+
     fun setCurrentEmotion(){
+        binding.currentTextView.visibility = View.VISIBLE
+        binding.currentEmotionState.visibility = View.VISIBLE
+
+        binding.InitialtextView.visibility = View.GONE
+        binding.initialEmotionState.visibility = View.GONE
+
         val currentEmotionClass = emotions.find { it.id == currentEmotion }
         binding.currentImage.setImageResource(currentEmotionClass!!.imageResId);
         binding.currentText.setText(currentEmotionClass.text);
@@ -113,6 +149,19 @@ class EntranceActivity : AppCompatActivity() {
         )
         binding.emotion3.setBackgroundResource(
             if (selectEmotion == filteredEmotions[2].id) R.drawable.button_select_emotion else R.drawable.button_emotion
+        )
+
+        binding.initSadness.setBackgroundColor(
+            if(selectEmotion == "sadness") R.drawable.button_select_emotion else R.drawable.button_emotion
+        )
+        binding.initAnger.setBackgroundColor(
+            if(selectEmotion == "anger") R.drawable.button_select_emotion else R.drawable.button_emotion
+        )
+        binding.initHappiness.setBackgroundColor(
+            if(selectEmotion == "happiness") R.drawable.button_select_emotion else R.drawable.button_emotion
+        )
+        binding.initGentleness.setBackgroundColor(
+            if(selectEmotion == "gentleness") R.drawable.button_select_emotion else R.drawable.button_emotion
         )
     }
 }

@@ -6,6 +6,8 @@ import android.graphics.Rect
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
@@ -26,53 +28,71 @@ class JoinActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityJoinBinding
 
+    private var gender: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityJoinBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // 로그인 버튼 클릭 이벤트
         binding.loginBtn.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-    }
-
-    fun test(){
+        // 회원가입 버튼 클릭 이벤트
         binding.joinBtn.setOnClickListener {
-            val id = binding.idInput.text.toString()
-            val pw = binding.passwordInput.text.toString()
-
-            val responseListener = Response.Listener<String> { response ->
-                try {
-                    val jsonObject = JSONObject(response)
-                    val success = jsonObject.getBoolean("success")
-
-                    if (success) {
-                        Toast.makeText(applicationContext, "성공", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@JoinActivity, MainActivity::class.java)
-                        startActivity(intent)
-                    } else {
-                        Toast.makeText(applicationContext, "실패", Toast.LENGTH_SHORT).show()
-                        return@Listener
-                    }
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                    Toast.makeText(applicationContext, "예외 1", Toast.LENGTH_SHORT).show()
-                    return@Listener
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    Toast.makeText(applicationContext, "예외 2", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            val signupRequestActivity = SignupRequestActivity(id, pw, responseListener)
-            val queue = Volley.newRequestQueue(applicationContext)
-            queue.add(signupRequestActivity)
+            test()
+            Log.d("tttt", "누름");
         }
 
+        binding.radioGroupGender.setOnCheckedChangeListener { group, checkedId ->
+            when (checkedId) {
+                R.id.radioButtonMale -> gender = "남"
+                R.id.radioButtonFemale -> gender = "여"
+            }
+            // 선택된 성별을 로그로 출력하여 확인합니다.
+            Log.d("JoinActivity", "선택된 성별: $gender")
+        }
+    }
+
+    fun test() {
+        // 버튼 클릭 시 호출되는 메서드
+        Log.d("tttt", "test() 호출됨")
+        val id = binding.idInput.text.toString()
+        val pw = binding.passwordInput.text.toString()
+        val name = binding.nameInput.text.toString()
+        val birth = binding.birthInput.text.toString().toInt()
+        val gend = gender.toString()
+
+
+        val responseListener = Response.Listener<String> { response ->
+            try {
+                Log.d("JoinActivity", "응답 받음")
+                val jsonObject = JSONObject(response)
+                val success = jsonObject.getBoolean("success")
+
+                if (success) {
+                    Toast.makeText(this, "성공", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: JSONException) {
+                e.printStackTrace()
+                Toast.makeText(this, "예외 1", Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toast.makeText(this, "예외 2", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        val signupRequestActivity = SignupRequestActivity(id, pw, name, birth, gend, responseListener)
+        val queue = Volley.newRequestQueue(this)
+        queue.add(signupRequestActivity)
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -92,6 +112,7 @@ class JoinActivity : AppCompatActivity() {
         return super.dispatchTouchEvent(ev)
     }
 }
+
 
 
 

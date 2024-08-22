@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,10 +19,12 @@ import com.chaeni__beam.ai_healing.Adapter.FoodListAdapter
 import com.chaeni__beam.ai_healing.Adapter.ProductData
 import com.chaeni__beam.ai_healing.Adapter.ProductListAdapter
 import com.chaeni__beam.ai_healing.Adapter.foodData
+import com.chaeni__beam.ai_healing.DiaryActivity
 import com.chaeni__beam.ai_healing.content.ContentActivity
 import com.chaeni__beam.ai_healing.EntranceActivity
 import com.chaeni__beam.ai_healing.food.FoodActivity
 import com.chaeni__beam.ai_healing.R
+import com.chaeni__beam.ai_healing.content.MusicActivity
 import com.chaeni__beam.ai_healing.databinding.FragmentHomeBinding
 import com.chaeni__beam.ai_healing.fragment.ContentBoardFragment
 import kotlin.random.Random
@@ -31,16 +34,10 @@ class HomeFragment : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
 
-    private lateinit var handler: Handler
-    private lateinit var runnable: Runnable
-
-    private val numPages = 4
-
     lateinit var foodAdapter: FoodListAdapter
-    lateinit var productAdapter : ProductListAdapter
 
     val foodData = mutableListOf<foodData>()
-    val productData = mutableListOf<ProductData>()
+
 
 
     var emotion: String = ""
@@ -67,7 +64,7 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            emotion = it.getString("emotion") ?: ""
+            emotion = it.getString("emotion", "") ?: ""
         }
     }
 
@@ -80,15 +77,7 @@ class HomeFragment : Fragment() {
 
         initFoodRecycler()
 
-        initProductRecycler()
-
         setEmotion()
-
-        //임시
-        binding.button1.setOnClickListener{
-            val intent = Intent(requireContext(), ContentActivity::class.java)
-            startActivity(intent)
-        }
 
         binding.button2.setOnClickListener{
             val intent = Intent(requireContext(), FoodActivity::class.java)
@@ -99,51 +88,31 @@ class HomeFragment : Fragment() {
             //짜야함
         }
 
+        binding.diaryBtn.setOnClickListener{
+            val intent = Intent(requireContext(), DiaryActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.imageEmotion.setOnClickListener{
             val intent = Intent(requireContext(), EntranceActivity::class.java)
             intent.putExtra("emotion", emotion)
             startActivity(intent)
         }
 
-        contentBoard()
+        binding.musicRcm.setOnClickListener{
+            val intent = Intent(requireContext(), MusicActivity::class.java)
+            startActivity(intent)
+        }
 
         return binding.root
     }
 
-    fun contentBoard(){
-        binding.contentBoard.adapter = ScreenSlidePagerAdapter(requireActivity())
 
-        handler = Handler(Looper.getMainLooper())
-        runnable = object : Runnable {
-            override fun run() {
-                val currentItem = binding.contentBoard.currentItem
-                val nextItem = (currentItem + 1) % numPages
-                binding.contentBoard.setCurrentItem(nextItem, true)
-                handler.postDelayed(this, 5000)
-            }
-        }
-
-        // Start the automatic sliding
-        handler.postDelayed(runnable, 5000)
-    }
 
     override fun onDestroy() {
         super.onDestroy()
-        handler.removeCallbacks(runnable) // Remove callbacks to prevent memory leaks
     }
 
-    private inner class ScreenSlidePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
-        override fun getItemCount(): Int = numPages
-
-        override fun createFragment(position: Int): Fragment {
-            return when(position) {
-                0 -> ContentBoardFragment(R.drawable.movie_rcm)
-                1 -> ContentBoardFragment(R.drawable.music_rcm)
-                2 -> ContentBoardFragment(R.drawable.book_rcm)
-                else -> ContentBoardFragment(R.drawable.game_rcm)
-            }
-        }
-    }
 
     fun setEmotion(){
         when(emotion){
@@ -152,6 +121,7 @@ class HomeFragment : Fragment() {
                 binding.titleEmotion.setText(" 슬픔, 우울 ")
                 binding.titleEmotion.setBackgroundColor(Color.parseColor("#8045496E"))
                 binding.imageEmotion.setImageResource(R.drawable.sadness_bg)
+                binding.emotionSelectText.visibility = View.GONE
                 binding.mentEmotion.setText(sadnessMentList[Random.nextInt(2)] + "${name}님에게 따뜻한 위로가 될 수 있는\n컨텐츠를 추천해드릴게요.")}
 
             "anger" ->{
@@ -159,6 +129,7 @@ class HomeFragment : Fragment() {
                 binding.titleEmotion.setText(" 화남, 스트레스 ")
                 binding.titleEmotion.setBackgroundColor(Color.parseColor("#80713737"))
                 binding.imageEmotion.setImageResource(R.drawable.anger_bg)
+                binding.emotionSelectText.visibility = View.GONE
                 binding.mentEmotion.setText(angerMentList[Random.nextInt(2)] + "${name}님의 마음을 가라앉힐 수 있는\n컨텐츠를 추천해드릴게요.")}
 
             "gentleness" ->{
@@ -166,6 +137,7 @@ class HomeFragment : Fragment() {
                 binding.titleEmotion.setText(" 평온, 차분 ")
                 binding.titleEmotion.setBackgroundColor(Color.parseColor("#80806B36"))
                 binding.imageEmotion.setImageResource(R.drawable.gentleness_bg)
+                binding.emotionSelectText.visibility = View.GONE
                 binding.mentEmotion.setText(gentlenessMentList[Random.nextInt(2)] + "${name}님의 차분한 마음을 유지하는 데\n도움이 될 만한 컨텐츠를 추천해드릴게요.")}
 
             "happiness" ->{
@@ -173,8 +145,12 @@ class HomeFragment : Fragment() {
                 binding.titleEmotion.setText(" 행복, 기쁨 ")
                 binding.titleEmotion.setBackgroundColor(Color.parseColor("#80AF2B59"))
                 binding.imageEmotion.setImageResource(R.drawable.happiness_bg)
+                binding.emotionSelectText.visibility = View.GONE
                 binding.mentEmotion.setText(happinessMentList[Random.nextInt(2)] + "${name}님이 이 행복한 순간을 더 오래 지속할 수 있도록\n맞춤 컨텐츠를 추천해드릴게요.")}
 
+            else -> {
+                binding.emotionSelectText.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -195,24 +171,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun initProductRecycler() {
-        productAdapter = ProductListAdapter(requireContext())
-        binding.productRv.adapter = productAdapter
 
-        productData.apply {
-            add(ProductData(product_img = R.drawable.product1, product_name = "LED 무드등", product_url = "https://url.kr/49rmxq"))
-
-            productAdapter.datas = productData
-            productAdapter.notifyDataSetChanged()
-        }
-
-        productAdapter.listener = object : ProductListAdapter.OnItemClickListener {
-            override fun onItemClick(item: ProductData) {
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse(item.product_url)
-                startActivity(intent)
-            }
-        }
-    }
 
 }

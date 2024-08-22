@@ -32,20 +32,6 @@ class DashboardFragment : Fragment() {
     ): View? {
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
-        binding.weekBtn.setOnClickListener{
-            val intent = Intent(requireContext(), CalendarActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.contentsSettingBtn.setOnClickListener{
-            val intent = Intent(requireContext(), ContentSettingActivity::class.java)
-            startActivity(intent)
-        }
-
-        val span = SpannableStringBuilder("신나는 일이 많으셨던 것 같아요.")
-        span.setSpan(BackgroundColorSpan(Color.parseColor("#FFF59D")), 0, 5, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        binding.weekComment.text = span
 
 
         return binding.root
