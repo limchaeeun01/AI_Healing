@@ -84,7 +84,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="김수원 님의 감정 여정을 분석해 보았어요."
+                    android:gravity="center"
+                    android:text="감정 캘린더를 통해,\n김수원 님의 감정 여정을 분석해 보았어요."
                     android:fontFamily="@font/pretendard_regular"
                     android:textSize="20sp" />
 

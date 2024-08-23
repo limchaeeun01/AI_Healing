@@ -1,7 +1,5 @@
-package com.chaeni__beam.ai_healing
+package com.chaeni__beam.ai_healing.Login
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 

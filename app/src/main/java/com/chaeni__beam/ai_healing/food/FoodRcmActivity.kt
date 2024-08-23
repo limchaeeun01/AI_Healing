@@ -4,22 +4,26 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chaeni__beam.ai_healing.Adapter.FoodVerticalAdapter
-import com.chaeni__beam.ai_healing.Adapter.foodData
+import com.chaeni__beam.ai_healing.Data.foodData
 import com.chaeni__beam.ai_healing.R
 import com.chaeni__beam.ai_healing.databinding.ActivityFoodRankBinding
 
 
-class FoodRankActivity : AppCompatActivity() {
+class FoodRcmActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFoodRankBinding
 
     lateinit var foodAdapter: FoodVerticalAdapter
     val foodData = mutableListOf<foodData>()
 
+    private var emotion: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFoodRankBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        emotion = intent.getStringExtra("emotion").toString()
 
         initFoodRecycler()
 

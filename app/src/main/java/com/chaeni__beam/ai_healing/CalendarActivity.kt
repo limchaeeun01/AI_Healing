@@ -28,10 +28,6 @@ class CalendarActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.diaryBtn.setOnClickListener{
-            val intent = Intent(this, DiaryActivity::class.java)
-            startActivity(intent)
-        }
 
         initView()
 

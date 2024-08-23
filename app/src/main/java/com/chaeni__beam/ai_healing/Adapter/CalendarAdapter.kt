@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.chaeni__beam.ai_healing.Data.DiaryData
 import com.chaeni__beam.ai_healing.R
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -30,6 +31,14 @@ class CalendarAdapter(
 
     var furangCalendar: FurangCalendar = FurangCalendar(date)
 
+    val diaryEntries = listOf(
+        DiaryData("2024-08-01", 3, "행복한 하루였다."), // 행복
+        DiaryData("2024-08-02", 1, "슬픈 일이 있었다."), // 슬픔
+        DiaryData("2024-08-03", 2, "화가 난다."), // 화남
+        DiaryData("2024-08-04", 4, "평온한 하루였다.") // 평온함
+    )
+
+
     init {
         furangCalendar.initBaseCalendar()
         dataList = furangCalendar.dateList
@@ -40,6 +49,22 @@ class CalendarAdapter(
     }
 
     var itemClick: ItemClick? = null
+
+    fun getEmotionIcon(emotionId: Int): Int? {
+        return when (emotionId) {
+            1 -> R.drawable.sadness    // 슬픔
+            2 -> R.drawable.anger       // 화남
+            3 -> R.drawable.happiness   // 행복
+            4 -> R.drawable.gentleness    // 평온함
+            else -> null                // 기본 아이콘 설정 안함
+        }
+    }
+
+    fun getEmotionForDate(date: String): Int {
+        val diaryEntry = diaryEntries.find { it.date == date }
+        return diaryEntry?.emotionId ?: -1 // 해당 날짜의 감정 ID가 없으면 -1 반환
+    }
+
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: CalendarItemHolder, position: Int) {
@@ -75,9 +100,33 @@ class CalendarAdapter(
             itemCalendarDateText.text = data.toString()
 
             val currentMonth = furangCalendar.getCurrentMonth()
+            val currentYear = furangCalendar.calendar.get(Calendar.YEAR)
             val today = Calendar.getInstance()
             val todayDay = today.get(Calendar.DAY_OF_MONTH)
             val todayMonth = today.get(Calendar.MONTH) + 1 // 월은 0부터 시작하므로 +1
+
+            // 현재 월의 1일 이전, 현재 월의 마지막일 이후 값의 텍스트를 회색 처리
+            if (position < firstDateIndex || position > lastDateIndex) {
+                itemCalendarDateText.setTextColor(context.getColor(R.color.gray))  // 회색 처리
+                itemCalendarEmotionImg.visibility = View.GONE // 회색 글씨일 경우 아이콘을 숨김
+            } else {
+                itemCalendarDateText.setTextColor(context.getColor(R.color.black))  // 기본 색상
+
+                // 날짜를 yyyy-MM-dd 형식으로 포맷
+                val date = String.format("%04d-%02d-%02d", currentYear, currentMonth, data)
+
+                // 날짜에 해당하는 감정 ID를 가져옴 (임시로 userId는 "userId"로 설정)
+                val emotionId = getEmotionForDate(date)
+                val emotionIcon = getEmotionIcon(emotionId)
+
+                // 아이콘 설정
+                if (emotionIcon != null) {
+                    itemCalendarEmotionImg.setImageResource(emotionIcon)
+                    itemCalendarEmotionImg.visibility = View.VISIBLE
+                } else {
+                    itemCalendarEmotionImg.visibility = View.GONE // 아이콘을 설정하지 않고 뷰를 숨김
+                }
+            }
 
             // 선택된 날짜 처리
             if (position == selectedPosition) {
@@ -92,14 +141,9 @@ class CalendarAdapter(
                 itemCalendarDateText.setTypeface(null, Typeface.NORMAL)
                 itemCalendarDateText.background = null
             }
-
-            // 현재 월의 1일 이전, 현재 월의 마지막일 이후 값의 텍스트를 회색 처리
-            if (position < firstDateIndex || position > lastDateIndex) {
-                itemCalendarDateText.setTextColor(context.getColor(R.color.gray))  // 회색 처리
-            } else {
-                itemCalendarDateText.setTextColor(context.getColor(R.color.black))  // 기본 색상
-                Glide.with(itemView).load(R.drawable.happiness).into(itemCalendarEmotionImg)
-            }
         }
+
+
+
     }
 }

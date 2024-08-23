@@ -1,4 +1,4 @@
-package com.chaeni__beam.ai_healing.Adapter
+package com.chaeni__beam.ai_healing.Data
 
 data class foodData(
     val food_name : String,

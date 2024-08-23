@@ -20,11 +20,15 @@ class FoodActivity : AppCompatActivity() {
 
     private val numPages = 4
 
+    private var emotion: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityFoodBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        emotion = intent.getStringExtra("emotion").toString()
 
         binding.backBtn.setOnClickListener{
             finish()
@@ -57,10 +61,10 @@ class FoodActivity : AppCompatActivity() {
 
         override fun createFragment(position: Int): Fragment {
             return when(position) {
-                0 -> FoodBoardFragment(R.drawable.food_menu_rcm)
-                1 -> FoodBoardFragment(R.drawable.food_pizza_ad)
-                2 -> FoodBoardFragment(R.drawable.food_ade_ad)
-                else -> FoodBoardFragment(R.drawable.food_ice_ad)
+                0 -> FoodBoardFragment(R.drawable.food_menu_rcm, emotion)
+                1 -> FoodBoardFragment(R.drawable.food_pizza_ad, emotion)
+                2 -> FoodBoardFragment(R.drawable.food_ade_ad, emotion)
+                else -> FoodBoardFragment(R.drawable.food_ice_ad, emotion)
             }
         }
     }

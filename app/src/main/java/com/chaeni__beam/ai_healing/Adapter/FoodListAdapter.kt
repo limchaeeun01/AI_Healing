@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.chaeni__beam.ai_healing.Data.foodData
 import com.chaeni__beam.ai_healing.R
 
 class FoodListAdapter(private val context: Context) : RecyclerView.Adapter<FoodListAdapter.ViewHolder>() {

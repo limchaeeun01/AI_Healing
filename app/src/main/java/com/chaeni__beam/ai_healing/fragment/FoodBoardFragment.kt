@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.chaeni__beam.ai_healing.R
-import com.chaeni__beam.ai_healing.food.FoodRankActivity
+import com.chaeni__beam.ai_healing.food.FoodRcmActivity
 
 
-class FoodBoardFragment(val image : Int) : Fragment() {
+class FoodBoardFragment(val image : Int, val emotion : String) : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +39,8 @@ class FoodBoardFragment(val image : Int) : Fragment() {
         imageView.setOnClickListener {
             when(image){
                 R.drawable.food_menu_rcm ->{
-                    val intent = Intent(requireContext(), FoodRankActivity::class.java)
+                    val intent = Intent(requireContext(), FoodRcmActivity::class.java)
+                    intent.putExtra("emotion", emotion)
                     startActivity(intent)
                 }
 

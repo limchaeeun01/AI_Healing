@@ -1,4 +1,4 @@
-package com.chaeni__beam.ai_healing.Adapter
+package com.chaeni__beam.ai_healing.Data
 
 import java.net.URL
 

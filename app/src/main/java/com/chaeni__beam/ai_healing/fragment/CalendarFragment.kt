@@ -8,11 +8,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.chaeni__beam.ai_healing.Adapter.CalendarAdapter
 import com.chaeni__beam.ai_healing.CalendarActivity
 import com.chaeni__beam.ai_healing.R

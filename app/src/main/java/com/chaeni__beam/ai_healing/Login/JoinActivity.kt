@@ -1,26 +1,18 @@
-package com.chaeni__beam.ai_healing
+package com.chaeni__beam.ai_healing.Login
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Rect
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 import android.view.MotionEvent
-import android.view.View
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.view.WindowCompat
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
+import com.chaeni__beam.ai_healing.MainActivity
 import com.chaeni__beam.ai_healing.R
 import com.chaeni__beam.ai_healing.databinding.ActivityJoinBinding
-import com.chaeni__beam.ai_healing.databinding.ActivityLoginBinding
 import org.json.JSONException
 import org.json.JSONObject
 

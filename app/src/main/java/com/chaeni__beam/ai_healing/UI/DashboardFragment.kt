@@ -32,6 +32,11 @@ class DashboardFragment : Fragment() {
     ): View? {
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
+        binding.calendarBtn.setOnClickListener{
+            val intent = Intent(requireContext(), CalendarActivity::class.java)
+            startActivity(intent)
+        }
+
 
 
         return binding.root

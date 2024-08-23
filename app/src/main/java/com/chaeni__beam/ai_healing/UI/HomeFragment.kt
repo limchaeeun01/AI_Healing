@@ -2,31 +2,21 @@ package com.chaeni__beam.ai_healing.UI
 
 import android.content.Intent
 import android.graphics.Color
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.FragmentActivity
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.chaeni__beam.ai_healing.Adapter.FoodListAdapter
-import com.chaeni__beam.ai_healing.Adapter.ProductData
-import com.chaeni__beam.ai_healing.Adapter.ProductListAdapter
-import com.chaeni__beam.ai_healing.Adapter.foodData
+import com.chaeni__beam.ai_healing.Data.foodData
 import com.chaeni__beam.ai_healing.DiaryActivity
-import com.chaeni__beam.ai_healing.content.ContentActivity
 import com.chaeni__beam.ai_healing.EntranceActivity
 import com.chaeni__beam.ai_healing.food.FoodActivity
 import com.chaeni__beam.ai_healing.R
 import com.chaeni__beam.ai_healing.content.MusicActivity
 import com.chaeni__beam.ai_healing.databinding.FragmentHomeBinding
-import com.chaeni__beam.ai_healing.fragment.ContentBoardFragment
 import kotlin.random.Random
 
 
@@ -79,8 +69,9 @@ class HomeFragment : Fragment() {
 
         setEmotion()
 
-        binding.button2.setOnClickListener{
+        binding.foodAllBtn.setOnClickListener{
             val intent = Intent(requireContext(), FoodActivity::class.java)
+            intent.putExtra("emotion", emotion)
             startActivity(intent)
         }
 
@@ -101,6 +92,7 @@ class HomeFragment : Fragment() {
 
         binding.musicRcm.setOnClickListener{
             val intent = Intent(requireContext(), MusicActivity::class.java)
+            intent.putExtra("emotion", emotion)
             startActivity(intent)
         }
 

@@ -1,15 +1,12 @@
 package com.chaeni__beam.ai_healing
 
 import android.content.Intent
-import android.graphics.drawable.Drawable
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
-import com.chaeni__beam.ai_healing.Adapter.Emotion
+import com.chaeni__beam.ai_healing.Data.Emotion
 import com.chaeni__beam.ai_healing.databinding.ActivityEntranceBinding
 
 class EntranceActivity : AppCompatActivity() {
