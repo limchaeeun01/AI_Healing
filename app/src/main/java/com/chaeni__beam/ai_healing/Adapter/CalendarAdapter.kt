@@ -21,7 +21,7 @@ import java.util.Locale
 
 class CalendarAdapter(
     val context: Context,
-    val calendarLayout: LinearLayout,
+    val recyclerView: RecyclerView,
     val date: Date
 ) : RecyclerView.Adapter<CalendarAdapter.CalendarItemHolder>() {
 
@@ -68,8 +68,8 @@ class CalendarAdapter(
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: CalendarItemHolder, position: Int) {
-        val h = calendarLayout.height / 6
-        holder.itemView.layoutParams.height = h
+        val itemHeight = context.resources.getDimensionPixelSize(R.dimen.item_height) // 고정된 높이값 사용
+        holder.itemView.layoutParams.height = itemHeight
 
         holder.bind(dataList[position], position, context)
 
