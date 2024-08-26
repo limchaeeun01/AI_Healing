@@ -62,7 +62,7 @@
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:text="00000원"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/food_info" />

@@ -75,7 +75,7 @@
                 android:layout_marginRight="40dp"
                 android:inputType="number"
                 android:maxLength="8"
-                android:hint="ex) 991011"
+                android:hint="ex) 19871011"
                 android:paddingLeft="15dp"
                 android:background="@drawable/edittext_rounded_corner_rectangle" />
 
@@ -183,42 +183,11 @@
                 android:textSize="15dp"
                 android:text="회원가입"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="가입했던 적이 있는 것 같아요."
-                android:fontFamily="@font/pretendard_regular"
-                android:layout_marginTop="100dp"
-                android:layout_gravity="center"
-                android:textSize="20sp"/>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_height="100dp">
 
-                <View
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/baseline_arrow_right_24"
-                    app:layout_constraintEnd_toStartOf="@+id/loginBtn"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/loginBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="로그인 창으로 이동하기"
-                    android:fontFamily="@font/pretendard_regular"
-                    android:textColor="#99000000"
-                    android:textSize="15sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
 
         </LinearLayout>

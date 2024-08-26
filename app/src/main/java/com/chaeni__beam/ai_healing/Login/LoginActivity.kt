@@ -30,10 +30,10 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.loginBtn.setOnClickListener {
+            //test()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish()
-            //test()
+            Toast.makeText(this, "이가영님 반갑습니다!", Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -67,13 +67,11 @@ class LoginActivity : AppCompatActivity() {
                 val success = jsonObject.getBoolean("success")
 
                 if (success) {
-                    Toast.makeText(applicationContext, "기존 서버 로그인 성공.", Toast.LENGTH_SHORT).show()
-
+                    //Toast.makeText(applicationContext, "기존 서버 로그인 성공.", Toast.LENGTH_SHORT).show()
                     // 두 번째 서버로 요청 보내기
                     sendToSecondaryServer(id, pw)
-
                 } else {
-                    Toast.makeText(applicationContext, "기존 서버 로그인 실패.", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(applicationContext, "기존 서버 로그인 실패.", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: JSONException) {
                 e.printStackTrace()
@@ -104,10 +102,6 @@ class LoginActivity : AppCompatActivity() {
                 if (success) {
                     val msg = response.getString("ID")
                     Toast.makeText(applicationContext, "새로운 서버 로그인 성공. ID: $msg", Toast.LENGTH_SHORT).show()
-
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
                 } else {
                     Toast.makeText(applicationContext, "새로운 서버 로그인 실패.", Toast.LENGTH_SHORT).show()
                 }
@@ -122,7 +116,7 @@ class LoginActivity : AppCompatActivity() {
 
         val errorListener2 = Response.ErrorListener { error ->
             error.printStackTrace()
-            Toast.makeText(applicationContext, "새로운 서버에 네트워크 오류 발생.", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(applicationContext, "새로운 서버에 네트워크 오류 발생.", Toast.LENGTH_SHORT).show()
         }
 
         val secondaryLoginRequest = SecondaryLoginRequest(id, pw, responseListener2, errorListener2)

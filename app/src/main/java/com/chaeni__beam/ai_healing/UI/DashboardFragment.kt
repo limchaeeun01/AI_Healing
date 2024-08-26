@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.chaeni__beam.ai_healing.CalendarActivity
 import com.chaeni__beam.ai_healing.ContentSettingActivity
+import com.chaeni__beam.ai_healing.StatisticsActivity
 import com.chaeni__beam.ai_healing.databinding.FragmentDashboardBinding
 
 
@@ -36,6 +37,13 @@ class DashboardFragment : Fragment() {
             val intent = Intent(requireContext(), CalendarActivity::class.java)
             startActivity(intent)
         }
+
+        binding.statisticsBtn.setOnClickListener{
+            val intent = Intent(requireContext(), StatisticsActivity::class.java)
+            startActivity(intent)
+        }
+
+
 
 
 

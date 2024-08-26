@@ -14,7 +14,7 @@ class SecondaryLoginRequest(
     private val map: MutableMap<String, String> = HashMap()
 
     init {
-        map["user_id"] = "user2"
+        map["user_id"] = ID
     }
 
     override fun getHeaders(): MutableMap<String, String> {

@@ -27,17 +27,10 @@ class JoinActivity : AppCompatActivity() {
         binding = ActivityJoinBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 로그인 버튼 클릭 이벤트
-        binding.loginBtn.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
         // 회원가입 버튼 클릭 이벤트
         binding.joinBtn.setOnClickListener {
             test()
-            Log.d("tttt", "누름");
+            finish()
         }
 
         binding.radioGroupGender.setOnCheckedChangeListener { group, checkedId ->
@@ -67,9 +60,8 @@ class JoinActivity : AppCompatActivity() {
                 val success = jsonObject.getBoolean("success")
 
                 if (success) {
-                    Toast.makeText(this, "성공", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                    Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
+                    finish()
                 } else {
                     Toast.makeText(this, "실패", Toast.LENGTH_SHORT).show()
                 }

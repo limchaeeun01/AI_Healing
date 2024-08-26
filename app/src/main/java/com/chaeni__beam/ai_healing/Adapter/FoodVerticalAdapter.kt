@@ -12,9 +12,16 @@ import com.chaeni__beam.ai_healing.Data.foodData
 import com.chaeni__beam.ai_healing.R
 
 
-class FoodVerticalAdapter(private val context: Context) : RecyclerView.Adapter<FoodVerticalAdapter.ViewHolder>() {
+class FoodVerticalAdapter(
+    private val context: Context,
+    private val itemClickListener: OnItemClickListener
+    ) : RecyclerView.Adapter<FoodVerticalAdapter.ViewHolder>() {
 
     var datas = mutableListOf<foodData>()
+
+    interface OnItemClickListener {
+        fun onItemClick(item: foodData)
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.food_list_item2,parent,false)
         return ViewHolder(view)
@@ -38,6 +45,10 @@ class FoodVerticalAdapter(private val context: Context) : RecyclerView.Adapter<F
             Glide.with(itemView).load(item.food_img).into(foodImg)
             foodInfo.text = item.food_info
             foodPrice.text= item.food_price.toString() + "원"
+
+            itemView.setOnClickListener {
+                itemClickListener.onItemClick(item)
+            }
 
         }
     }

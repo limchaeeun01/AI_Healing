@@ -31,8 +31,17 @@
         android:textSize="25sp"/>
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:textColor="#816C5E"
+        android:textSize="15dp"
+        android:text="카메라를 20초 동안 최소 1회 이상 마주하고 이용해주세요."/>
+
+    <TextView
         android:layout_marginLeft="45dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="60dp"
         android:textSize="14dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

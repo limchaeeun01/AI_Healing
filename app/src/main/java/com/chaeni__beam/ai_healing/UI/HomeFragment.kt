@@ -15,8 +15,12 @@ import com.chaeni__beam.ai_healing.DiaryActivity
 import com.chaeni__beam.ai_healing.EntranceActivity
 import com.chaeni__beam.ai_healing.food.FoodActivity
 import com.chaeni__beam.ai_healing.R
+import com.chaeni__beam.ai_healing.content.BookActivity
+import com.chaeni__beam.ai_healing.content.GameActivity
+import com.chaeni__beam.ai_healing.content.MovieActivity
 import com.chaeni__beam.ai_healing.content.MusicActivity
 import com.chaeni__beam.ai_healing.databinding.FragmentHomeBinding
+import com.chaeni__beam.ai_healing.food.FoodRcmActivity
 import kotlin.random.Random
 
 
@@ -65,8 +69,6 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        initFoodRecycler()
-
         setEmotion()
 
         binding.foodAllBtn.setOnClickListener{
@@ -81,6 +83,7 @@ class HomeFragment : Fragment() {
 
         binding.diaryBtn.setOnClickListener{
             val intent = Intent(requireContext(), DiaryActivity::class.java)
+            intent.putExtra("emotion", emotion)
             startActivity(intent)
         }
 
@@ -90,8 +93,32 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.movieRcm.setOnClickListener{
+            val intent = Intent(requireContext(), MovieActivity::class.java)
+            intent.putExtra("emotion", emotion)
+            startActivity(intent)
+        }
+
         binding.musicRcm.setOnClickListener{
             val intent = Intent(requireContext(), MusicActivity::class.java)
+            intent.putExtra("emotion", emotion)
+            startActivity(intent)
+        }
+
+        binding.bookRcm.setOnClickListener{
+            val intent = Intent(requireContext(), BookActivity::class.java)
+            intent.putExtra("emotion", emotion)
+            startActivity(intent)
+        }
+
+        binding.gameRcm.setOnClickListener{
+            val intent = Intent(requireContext(), GameActivity::class.java)
+            intent.putExtra("emotion", emotion)
+            startActivity(intent)
+        }
+
+        binding.foodRcm.setOnClickListener{
+            val intent = Intent(requireContext(), FoodRcmActivity::class.java)
             intent.putExtra("emotion", emotion)
             startActivity(intent)
         }
@@ -143,23 +170,6 @@ class HomeFragment : Fragment() {
             else -> {
                 binding.emotionSelectText.visibility = View.VISIBLE
             }
-        }
-    }
-
-    fun initFoodRecycler() {
-        foodAdapter = FoodListAdapter(requireContext())
-        binding.foodRv.adapter = foodAdapter
-
-        foodData.apply {
-            add(foodData(food_img = R.drawable.yeoneo, food_name = "연어", food_info = " ", food_price = 0))
-            add(foodData(food_img = R.drawable.hodugwaja, food_name = "호두과자", food_info = " ", food_price = 0))
-            add(foodData(food_img = R.drawable.origogi, food_name = "오리고기", food_info = " ", food_price = 0))
-            add(foodData(food_img = R.drawable.chokocake, food_name = "초코케이크", food_info = " ", food_price = 0))
-            add(foodData(food_img = R.drawable.nokcha, food_name = "녹차", food_info = " ", food_price = 0))
-
-            foodAdapter.datas = foodData
-            foodAdapter.notifyDataSetChanged()
-
         }
     }
 

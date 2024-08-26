@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_bold"
-            android:text="표정 캘린더"
+            android:text="감정 캘린더"
             android:textColor="@color/black"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -74,15 +74,17 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/pretendard_bold"
                     android:textSize="20dp"
-                    android:text="날짜"/>
+                    android:text="2024/08/19"/>
 
                 <TextView
                     android:id="@+id/content_textView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:textSize="17dp"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/pretendard_regular"
-                    android:text="내용"/>
+                    android:text="별 것도 아닌 걸로 친구와 싸웠다. 하루 종일 기분이 좋지 않다."/>
 
 
             </LinearLayout>
