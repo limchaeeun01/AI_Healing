@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_bold"
             android:text="오늘의 음악"
-            android:textColor="@color/white"
+            android:textColor="#CDFFFFFF"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -79,22 +79,38 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="스물다섯, 스물하나"
-                    android:fontFamily="@font/pretendard_bold"
-                    android:textColor="@color/white"
-                    android:textSize="20dp"/>
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="스물다섯, 스물하나"
+                        android:fontFamily="@font/pretendard_bold"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15dp"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:text="자우림"/>
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:textColor="#C8FFFFFF"
                     android:fontFamily="@font/pretendard_regular"
-                    android:text="자우림"/>
+                    android:text="K-POP, 록, 메탈, OST"/>
 
 
             </LinearLayout>
@@ -123,22 +139,38 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="어른"
-                    android:fontFamily="@font/pretendard_bold"
-                    android:textColor="@color/white"
-                    android:textSize="20dp"/>
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="어른"
+                        android:fontFamily="@font/pretendard_bold"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15dp"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:text="손디아"/>
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:textColor="#C8FFFFFF"
                     android:fontFamily="@font/pretendard_regular"
-                    android:text="손디아"/>
+                    android:text="K-POP, 발라드, OST"/>
 
 
             </LinearLayout>
@@ -167,23 +199,38 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="괜찮아도 괜찮아"
-                    android:fontFamily="@font/pretendard_bold"
-                    android:textColor="@color/white"
-                    android:textSize="20dp"/>
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="괜찮아도 괜찮아"
+                        android:fontFamily="@font/pretendard_bold"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="#2B2B2B"
+                        android:textSize="15dp"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:text="D.O."/>
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:textColor="#C8FFFFFF"
                     android:fontFamily="@font/pretendard_regular"
-                    android:text="D.O."/>
-
+                    android:text="K-POP, R&amp;B"/>
 
             </LinearLayout>
 

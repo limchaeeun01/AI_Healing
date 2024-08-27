@@ -1,6 +1,13 @@
 package com.chaeni__beam.ai_healing.UI
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -9,6 +16,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import com.chaeni__beam.ai_healing.Adapter.FoodListAdapter
 import com.chaeni__beam.ai_healing.Data.foodData
 import com.chaeni__beam.ai_healing.DiaryActivity
@@ -62,6 +74,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+    @SuppressLint("MissingPermission")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -123,7 +136,49 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+        createNotificationChannel()
+
+        createNotification()
+
+
         return binding.root
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createNotificationChannel() {
+        val CHANNEL_ID = "your_channel_id"
+        val channelName = "My Channel"
+        val channelDescription = "This is a description for my channel"
+
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel(CHANNEL_ID, channelName, importance).apply {
+            description = channelDescription
+            // 추가 설정 (소리, 진동 등)
+        }
+
+        val notificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun createNotification() {
+        val CHANNEL_ID = "your_channel_id"
+        val notiId = 1 // 알림 ID 설정
+        val title = "알림 타이틀"
+        val content = "알림 내용"
+        val bitmap = BitmapFactory.decodeResource(requireContext().resources, R.drawable.anger_bg)
+
+        val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(title)
+            .setContentText(content)
+            .setAutoCancel(true)
+            .setLargeIcon(bitmap)
+            .setShowWhen(true)
+            .setColor(ContextCompat.getColor(requireContext(), R.color.black))
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        NotificationManagerCompat.from(requireContext()).notify(notiId, builder.build())
     }
 
 
