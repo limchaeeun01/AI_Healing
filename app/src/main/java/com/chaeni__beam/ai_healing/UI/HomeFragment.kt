@@ -2,8 +2,10 @@ package com.chaeni__beam.ai_healing.UI
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -25,6 +27,7 @@ import com.chaeni__beam.ai_healing.Adapter.FoodListAdapter
 import com.chaeni__beam.ai_healing.Data.foodData
 import com.chaeni__beam.ai_healing.DiaryActivity
 import com.chaeni__beam.ai_healing.EntranceActivity
+import com.chaeni__beam.ai_healing.NotificationReceiver
 import com.chaeni__beam.ai_healing.food.FoodActivity
 import com.chaeni__beam.ai_healing.R
 import com.chaeni__beam.ai_healing.content.BookActivity
@@ -33,6 +36,7 @@ import com.chaeni__beam.ai_healing.content.MovieActivity
 import com.chaeni__beam.ai_healing.content.MusicActivity
 import com.chaeni__beam.ai_healing.databinding.FragmentHomeBinding
 import com.chaeni__beam.ai_healing.food.FoodRcmActivity
+import java.util.Calendar
 import kotlin.random.Random
 
 
@@ -164,12 +168,12 @@ class HomeFragment : Fragment() {
     private fun createNotification() {
         val CHANNEL_ID = "your_channel_id"
         val notiId = 1 // 알림 ID 설정
-        val title = "알림 타이틀"
-        val content = "알림 내용"
-        val bitmap = BitmapFactory.decodeResource(requireContext().resources, R.drawable.anger_bg)
+        val title = "오늘의 감정 일기를 깜빡하신 것 같아요!"
+        val content = "오늘의 감정을 한 줄로 남겨볼까요?"
+        val bitmap = BitmapFactory.decodeResource(requireContext().resources, R.drawable.ef_icon)
 
         val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
-            .setSmallIcon(R.mipmap.ic_launcher)
+            .setSmallIcon(R.drawable.app_icon)
             .setContentTitle(title)
             .setContentText(content)
             .setAutoCancel(true)
@@ -178,9 +182,15 @@ class HomeFragment : Fragment() {
             .setColor(ContextCompat.getColor(requireContext(), R.color.black))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
         NotificationManagerCompat.from(requireContext()).notify(notiId, builder.build())
     }
-
 
 
     override fun onDestroy() {

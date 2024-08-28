@@ -2,6 +2,7 @@ package com.chaeni__beam.ai_healing.content
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.chaeni__beam.ai_healing.databinding.ActivityGameBinding
@@ -18,6 +19,9 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        window.statusBarColor = Color.parseColor("#7DF4F0")  // 상태바 색상 변경
+        window.navigationBarColor = Color.parseColor("#7DF4F0")  // 네비게이션바 색상 변경
 
         val imageUrls = arrayOf(
             "https://i.namu.wiki/i/9vP1RUSbNcozJ9_Bn69pHCoVzrttiYECfTPkiG_DT8xf0opjtspeCSZbUZhBa_hMJIukPpDYmgtEkfy0f2ATbQ.png",
