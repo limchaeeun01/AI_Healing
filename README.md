@@ -18,7 +18,11 @@ AI를 활용한 사용자 표정과 주변 환경에 따른 댁내 힐링 서비
 
 
 ## 🖇️ 개발 기술
-RaspberryPi 5, Android Studio, Kotlin, MySQL, AWS
+- RaspberryPi 5
+- Android Studio
+- Kotlin
+- MySQL
+- AWS
 
 
 ## 📱안드로이드 앱 화면 구성도
