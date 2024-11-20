@@ -86,7 +86,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="현재 김수원님의 기분은.."
+                        android:text="현재 가용가리님의 기분은.."
                         android:textSize="15dp"
                         android:textColor="#A6000000"
                         android:fontFamily="@font/pretendard_regular" />

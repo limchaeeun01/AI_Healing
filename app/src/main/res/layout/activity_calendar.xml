@@ -74,7 +74,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/pretendard_bold"
                     android:textSize="20dp"
-                    android:text="2024/08/19"/>
+                    android:text="2024/08/29"/>
 
                 <TextView
                     android:id="@+id/content_textView"
@@ -84,7 +84,7 @@
                     android:textSize="17dp"
                     android:layout_gravity="center"
                     android:fontFamily="@font/pretendard_regular"
-                    android:text="별 것도 아닌 걸로 친구와 싸웠다. 하루 종일 기분이 좋지 않다."/>
+                    android:text="요즘 너무 피곤하고 힘들다."/>
 
 
             </LinearLayout>

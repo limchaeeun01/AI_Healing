@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
 
     var emotion: String = ""
 
-    var name = "김수원"
+    var name = "가용가리"
 
     val sadnessMentList = listOf("늘 행복할 수는 없지만\n" +
             "내일은 또 괜찮은 하루가 될 수 있어요.\n", "너무 밝지 않아도 돼요.\n" +
@@ -74,7 +74,7 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            emotion = it.getString("emotion", "") ?: ""
+            emotion = it.getString("emotion", "sadness") ?: "sadness"
         }
     }
 

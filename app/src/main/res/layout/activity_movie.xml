@@ -69,6 +69,7 @@
                     app:cardCornerRadius="10dp">
 
                     <ImageView
+                        android:id="@+id/movie1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/movie1"
@@ -84,6 +85,13 @@
                     android:fontFamily="@font/pretendard_bold"
                     android:textColor="@color/white"
                     android:textSize="20dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#C8FFFFFF"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="로맨스, 드라마, 청춘"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -128,6 +136,13 @@
                     android:fontFamily="@font/pretendard_bold"
                     android:textColor="@color/white"
                     android:textSize="20dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#C8FFFFFF"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="드라마, 코미디"/>
 
                 <TextView
                     android:layout_width="match_parent"

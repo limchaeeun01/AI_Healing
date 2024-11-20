@@ -65,7 +65,7 @@
                 android:fontFamily="@font/pretendard_bold"
                 android:gravity="center"
                 android:textSize="20dp"
-                android:text="김수원 님의 슬픔을 달래줄 음식 추천✨"/>
+                android:text="가용가리 님의 슬픔을 달래줄 음식 추천✨"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/food_rcv"

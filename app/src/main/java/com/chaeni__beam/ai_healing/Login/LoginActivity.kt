@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
             //test()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            Toast.makeText(this, "이가영님 반갑습니다!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "가용가리님 반갑습니다!", Toast.LENGTH_SHORT).show()
         }
 
     }

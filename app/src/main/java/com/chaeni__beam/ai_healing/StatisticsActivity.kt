@@ -68,12 +68,10 @@ class StatisticsActivity : AppCompatActivity() {
         binding.pieChart1.setUsePercentValues(true)
 
         // data set
-
-        entries1.add(PieEntry(41f, "슬픔"))
-        entries1.add(PieEntry(32f, "화남"))
-        entries1.add(PieEntry(7f, "평온함"))
-        entries1.add(PieEntry(20f, "행복"))
-
+        entries1.add(PieEntry(19.05f, "슬픔"))
+        entries1.add(PieEntry(23.81f, "화남"))
+        entries1.add(PieEntry(23.81f, "평온함"))
+        entries1.add(PieEntry(33.33f, "행복"))
 
         // add a lot of colors
         val colorsItems = ArrayList<Int>()
@@ -96,7 +94,7 @@ class StatisticsActivity : AppCompatActivity() {
             data = pieData
             description.isEnabled = false
             isRotationEnabled = false
-            centerText = "7월"
+            centerText = "10월"
             setEntryLabelColor(Color.BLACK)
             setCenterTextSize(20f)
             animateY(1400, Easing.EaseInOutQuad)
@@ -108,10 +106,10 @@ class StatisticsActivity : AppCompatActivity() {
         binding.pieChart2.setUsePercentValues(true)
 
         // data set
-        entries2.add(PieEntry(21f, "슬픔"))
-        entries2.add(PieEntry(30f, "화남"))
-        entries2.add(PieEntry(19f, "평온함"))
-        entries2.add(PieEntry(30f, "행복"))
+        entries2.add(PieEntry(27.78f, "슬픔"))
+        entries2.add(PieEntry(27.78f, "화남"))
+        entries2.add(PieEntry(22.22f, "평온함"))
+        entries2.add(PieEntry(38.89f, "행복"))
 
 
         // add a lot of colors
@@ -135,7 +133,7 @@ class StatisticsActivity : AppCompatActivity() {
             data = pieData
             description.isEnabled = false
             isRotationEnabled = false
-            centerText = "8월"
+            centerText = "11월"
             setEntryLabelColor(Color.BLACK)
             setCenterTextSize(20f)
             animateY(1400, Easing.EaseInOutQuad)
